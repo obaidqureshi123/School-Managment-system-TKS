@@ -1,0 +1,245 @@
+﻿@model List<School_Managment_system.Models.Cards>
+
+<!-- Google Fonts & FontAwesome -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<style>
+    :root {
+        --navy-blue: #0A192F;
+        --secondary-navy: #112240;
+        --gold: #C59B27;
+        --light-bg: #F8FAFC;
+    }
+
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: var(--light-bg);
+        color: #333;
+    }
+
+    /* Hero Building Section (Directly below Navbar) */
+    .hero-building-section {
+        position: relative;
+        background: linear-gradient(rgba(10, 25, 47, 0.82), rgba(10, 25, 47, 0.82)), url('/images/school.jpg') center/cover no-repeat;
+        padding: 80px 0 100px 0;
+        color: #fff;
+        border-bottom: 4px solid var(--gold);
+    }
+
+    .school-main-img-box {
+        border: 4px solid var(--gold);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+        .school-main-img-box img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+    .section-title {
+        color: var(--navy-blue);
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+        .section-title::after {
+            content: '';
+            width: 70px;
+            height: 4px;
+            background-color: var(--gold);
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+    /* Academic Program Cards */
+    .program-card {
+        border: none;
+        border-top: 4px solid var(--navy-blue);
+        border-radius: 12px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        background: #fff;
+    }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            border-top-color: var(--gold);
+        }
+
+    .program-icon {
+        font-size: 2.5rem;
+        color: var(--gold);
+    }
+
+    /* CRUD Event Management Long Cards */
+    .crud-event-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .crud-card-header {
+        background: var(--navy-blue);
+        color: #fff;
+        padding: 15px 20px;
+        border-bottom: 3px solid var(--gold);
+    }
+
+    .crud-card-body {
+        padding: 20px;
+        flex-grow: 1;
+    }
+
+    .crud-card-footer {
+        background: #f1f5f9;
+        padding: 15px 20px;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .event-img-preview {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px dashed var(--gold);
+        margin-bottom: 15px;
+    }
+
+    .btn-gold {
+        background: linear-gradient(135deg, var(--gold), #9B771A);
+        color: #fff !important;
+        font-weight: 600;
+        border: none;
+    }
+
+        .btn-gold:hover {
+            opacity: 0.9;
+        }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 30px;
+        right: 30px;
+        background-color: #25d366;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 32px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.25);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            color: #FFF;
+            transform: scale(1.1);
+        }
+</style>
+
+<!-- 1. Hero / Main Building Section (Right Below Navbar) -->
+<section class="hero-building-section">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-6">
+                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-3">Welcome to TKS</span>
+                <h1 class="display-4 fw-bold text-white mb-3">The Knowledge Islamic School</h1>
+                <p class="lead text-light opacity-90 mb-4">
+                    A Legacy of Quality Education committed to providing standard and modern education, moral tarbiyah, and technological excellence.
+                </p>
+                <a asp-action="About" asp-controller="Home" class="btn btn-gold btn-lg rounded-pill px-4 me-2">
+                    <i class="fa-solid fa-calendar-check me-2"></i>Our Journey
+                </a>
+                <a asp-action="Form" asp-controller="Home" target="_blank" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                    <i class="fa-brands fa-whatsapp me-2"></i>Contact Us
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <div class="school-main-img-box">
+                    <img src="~/school.jpg" onerror="this.src='/images/school.jpg';" alt="School Building Front View" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="container my-5">
+
+    <!-- 2. Key Programs Section -->
+    <div class="text-center my-5">
+        <h2 class="section-title">KEY PROGRAMS</h2>
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="card program-card p-4 h-100 text-center">
+                    <div class="program-icon mb-3">
+                        <i class="fa-solid fa-child"></i>
+                    </div>
+                    <h4 style="color: var(--navy-blue);" class="fw-bold">School with Day-Care</h4>
+                    <p class="text-muted">Early childhood education focused on play-based learning and foundational skills in a safe environment.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card program-card p-4 h-100 text-center">
+                    <div class="program-icon mb-3">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h4 style="color: var(--navy-blue);" class="fw-bold"> School with Hifz o Nazra </h4>
+                    <p class="text-muted">Comprehensive primary education developing core academic concepts and Islamic values.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card program-card p-4 h-100 text-center">
+                    <div class="program-icon mb-3">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 style="color: var(--navy-blue);" class="fw-bold"> Schooling System</h4>
+                    <p class="text-muted">Advanced learning preparing students for board exams, higher education, and future careers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5 border-secondary opacity-25" />
+
+    <!-- 3. Event Management CRUD UI Section (3 Long Cards) -->
+    
+    <div>
+
+        
+
+    </div>   
+    
+</main>
+
+<!-- Floating WhatsApp Direct Button -->
+<a href="https://api.whatsapp.com/send/?phone=923170292420&text&type=phone_number&app_absent=0"
+   class="whatsapp-float"
+   target="_blank"
+   title="Chat with us on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+</a> 

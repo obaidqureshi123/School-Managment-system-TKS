@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>@ViewData["Title"] - TKS School</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap & Icons CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/School_Managment_system.styles.css" asp-append-version="true" />
+
+    <style>
+            :root {
+                --primary-navy: #0A192F;
+                --secondary-navy: #112240;
+                --accent-gold: #C59B27;
+                --light-gold: #F3E5AB;
+                --dark-gold: #9B771A;
+                --bg-light: #F8FAFC;
+            }
+
+            *, *::before, *::after {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            body {
+                font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+                background-color: var(--bg-light);
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            /* Top Bar */
+            .top-bar {
+                background-color: var(--primary-navy);
+                color: #E2E8F0;
+                font-size: 0.88rem;
+                border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+            }
+
+                .top-bar a {
+                    color: var(--light-gold);
+                    text-decoration: none;
+                    transition: color 0.25s ease;
+                }
+
+                    .top-bar a:hover {
+                        color: #ffffff;
+                    }
+
+            /* Navbar */
+            .main-navbar {
+                background-color: #FFFFFF;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                padding: 10px 0;
+                position: sticky;
+                top: 0;
+                z-index: 1030;
+                border-bottom: 3px solid var(--accent-gold);
+            }
+
+            .navbar-brand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                padding: 0;
+                margin-right: 10px;
+                flex-shrink: 0;
+            }
+
+            .brand-logo-img {
+                height: 48px;
+                width: 48px;
+                flex-shrink: 0;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 2px solid var(--accent-gold);
+                box-shadow: 0 3px 10px rgba(197, 155, 39, 0.25);
+                transition: transform 0.3s ease;
+            }
+
+            .navbar-brand:hover .brand-logo-img {
+                transform: scale(1.05);
+            }
+
+            .brand-text-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .brand-title {
+                font-family: 'Cinzel', Georgia, serif;
+                font-size: 1.25rem;
+                font-weight: 800;
+                color: var(--primary-navy);
+                line-height: 1.1;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+
+            .brand-subtitle {
+                font-size: 0.58rem;
+                color: var(--accent-gold);
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            /* Nav Links */
+            .nav-link {
+                font-weight: 600;
+                font-size: 0.9rem;
+                color: var(--primary-navy) !important;
+                padding: 6px 10px !important;
+                border-radius: 6px;
+                transition: all 0.25s ease;
+                white-space: nowrap;
+            }
+
+                .nav-link:hover {
+                    color: var(--accent-gold) !important;
+                    background-color: rgba(197, 155, 39, 0.08);
+                }
+
+                .nav-link.active {
+                    color: var(--dark-gold) !important;
+                    background-color: rgba(197, 155, 39, 0.12);
+                }
+
+            /* Action buttons group */
+            .navbar-actions {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding-left: 10px;
+                margin-left: 4px;
+                border-left: 1px solid rgba(10, 25, 47, 0.1);
+                flex-shrink: 0;
+            }
+
+            .btn-gold, .btn-dashboard {
+                font-weight: 700;
+                font-size: 0.85rem;
+                padding: 7px 16px;
+                border-radius: 30px;
+                transition: all 0.3s ease;
+                white-space: nowrap;
+                display: inline-block;
+            }
+
+            .btn-gold {
+                background: linear-gradient(135deg, var(--accent-gold), var(--dark-gold));
+                color: #FFFFFF !important;
+                border: none;
+                box-shadow: 0 4px 15px rgba(197, 155, 39, 0.3);
+            }
+
+                .btn-gold:hover {
+                    opacity: 0.95;
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 18px rgba(197, 155, 39, 0.45);
+                }
+
+            .btn-dashboard {
+                background: linear-gradient(135deg, var(--primary-navy), var(--secondary-navy));
+                color: var(--light-gold) !important;
+                border: 1px solid var(--accent-gold);
+                box-shadow: 0 4px 15px rgba(10, 25, 47, 0.25);
+            }
+
+                .btn-dashboard:hover {
+                    color: #ffffff !important;
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 18px rgba(10, 25, 47, 0.4);
+                    border-color: var(--light-gold);
+                }
+
+            /* Footer */
+            footer {
+                background-color: var(--primary-navy);
+                color: #94A3B8;
+                margin-top: auto;
+                border-top: 4px solid var(--accent-gold);
+            }
+
+                footer a {
+                    color: #CBD5E1;
+                    text-decoration: none;
+                    transition: color 0.25s ease;
+                }
+
+                    footer a:hover {
+                        color: var(--accent-gold);
+                    }
+
+            /* WhatsApp Floating Icon */
+            .whatsapp-float {
+                position: fixed;
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                background-color: #25d366;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                font-size: 28px;
+                box-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+                .whatsapp-float:hover {
+                    background-color: #128c7e;
+                    color: #FFF;
+                    transform: scale(1.08);
+                }
+
+            /* RESPONSIVE BREAKPOINT FIX (Upto 1199.98px) */
+            @@media (max-width: 1199.98px) {
+                .navbar-expand-lg .navbar-toggler {
+                    display: block !important;
+                }
+
+                .navbar-expand-lg .navbar-collapse {
+                    display: none !important;
+                }
+
+                    .navbar-expand-lg .navbar-collapse.show {
+                        display: block !important;
+                    }
+
+                .navbar-actions {
+                    border-left: none;
+                    padding-left: 0;
+                    margin-left: 0;
+                    margin-top: 15px;
+                    flex-direction: column;
+                    align-items: stretch;
+                    width: 100%;
+                }
+
+                .btn-gold, .btn-dashboard {
+                    text-align: center;
+                    width: 100%;
+                    margin-bottom: 8px;
+                }
+
+                .brand-subtitle {
+                    font-size: 0.55rem;
+                }
+
+                .brand-title {
+                    font-size: 1.15rem;
+                }
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Top Contact Bar -->
+    <div class="top-bar py-2 d-none d-md-block">
+        <div class="container-fluid px-4 d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-4">
+                <span><i class="fa-solid fa-location-dot text-warning me-2"></i>Orangi Town Sector 4-G, Karachi</span>
+                <span><i class="fa-solid fa-phone text-warning me-2"></i>+92 317 0292420</span>
+            </div>
+            <div class="d-flex gap-3 align-items-center">
+                <a href="https://api.whatsapp.com/send/?phone=923170292420&text&type=phone_number&app_absent=0" target="_blank">
+                    <i class="fa-brands fa-whatsapp me-1"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header>
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <div class="container-fluid px-3 px-md-4">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Home">
+                    <img src="~/logoschool.jpeg"
+                         alt="TKS School Logo"
+                         class="brand-logo-img"
+                         onerror="this.onerror=null; this.src='/images/logo.png';" />
+                    <div class="brand-text-container">
+                        <div class="brand-title">TKS</div>
+                        <div class="brand-subtitle">The Knowledge Islamic Montessori</div>
+                    </div>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+
+                    <!-- Left Side Links -->
+                    <ul class="navbar-nav me-auto ms-lg-2 mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Ranking" asp-controller="Home"><span class="badge bg-danger text-bg-dark me-1">LIVE</span> Ranking </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="About" asp-controller="Home"><span class="badge bg-success me-1">New</span> Upcoming event</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Rules" asp-controller="Home">Rules and Regulation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Daycare"><span class="badge bg-warning text-dark me-1">New</span>Day-Care</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Form">Contact us</a>
+                        </li>
+
+                        @if (Context.Session.GetString("Admin") == "true")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Data">Data</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- Right Side Action Buttons -->
+                    <div class="navbar-actions">
+
+                        <a asp-action="Dashboard" asp-controller="Home" class="btn btn-dashboard">
+                            <i class="fa-solid fa-gauge me-1"></i> Student Dashboard
+                        </a>
+
+                        <!-- ADMIN LOGOUT -->
+                        @if (Context.Session.GetString("Admin") == "true")
+                        {
+                            <a asp-action="Logout" asp-controller="Home" class="btn btn-gold">
+                                <i class="fa-solid fa-user-lock me-1"></i> Admin Logout
+                            </a>
+                        }
+
+                        <!-- STUDENT LOGOUT -->
+                        @if (Context.Session.GetString("Studentrole") == "True")
+                        {
+                            <a asp-action="Logout" asp-controller="Home" class="btn btn-dashboard">
+                                <i class="fa-solid fa-user-lock me-1"></i> Student Logout
+                            </a>
+                        }
+
+                        <!-- LOGIN PORTAL (Only visible when logged out) -->
+                        @if (string.IsNullOrEmpty(Context.Session.GetString("Admin")) && string.IsNullOrEmpty(Context.Session.GetString("Studentrole")))
+                        {
+                            <a asp-action="Login" asp-controller="Home" class="btn btn-gold">
+                                <i class="fa-solid fa-user-lock me-1"></i> Login Portal
+                            </a>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Body -->
+    <div class="container-fluid p-0">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="pt-4 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-3">
+                <div class="col-md-6">
+                    <h5 class="text-white fw-bold">TKS - The Knowledge Islamic Montessori & School</h5>
+                    <p class="small text-light opacity-75">Providing quality education & daycare facility with strong Islamic values in Orangi Town, Karachi.</p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="text-warning fw-bold">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a asp-controller="Home" asp-action="Home">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="About">Event </a></li>
+                        <li><a asp-controller="Home" asp-action="Rules">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="text-warning fw-bold">Contact Us</h6>
+                    <p class="small mb-1"><i class="fa-solid fa-phone me-2 text-warning"></i>+92 317 0292420</p>
+                    <p class="small"><i class="fa-solid fa-location-dot me-2 text-warning"></i>Orangi Town Sector 4-G, KHI</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-2">
+            <div class="text-center small">
+                &copy; 2026 - School_Managment_system - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send/?phone=923170292420&text&type=phone_number&app_absent=0"
+       class="whatsapp-float"
+       target="_blank"
+       title="Contact TKS on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

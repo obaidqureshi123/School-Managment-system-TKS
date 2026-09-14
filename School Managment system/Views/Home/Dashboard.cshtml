@@ -1,0 +1,490 @@
+﻿@model School_Managment_system.Models.Student
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --sd-bg: #f4f6fb;
+        --sd-card: #ffffff;
+        --sd-primary: #2563eb;
+        --sd-primary-dark: #1d4ed8;
+        --sd-text: #0f172a;
+        --sd-muted: #64748b;
+        --sd-border: #e6e9f0;
+    }
+
+    body {
+        background-color: var(--sd-bg) !important;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+    }
+
+    .sd-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* ===== Hero Card ===== */
+    .sd-hero {
+        position: relative;
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border-radius: 22px;
+        padding: 40px 34px;
+        color: #fff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        flex-wrap: wrap;
+    }
+
+        .sd-hero::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -60px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(37,99,235,0.35), transparent 70%);
+            filter: blur(10px);
+        }
+
+    .sd-avatar-ring {
+        width: 118px;
+        height: 118px;
+        border-radius: 50%;
+        padding: 4px;
+        background: linear-gradient(135deg, var(--sd-primary), #60a5fa);
+        flex-shrink: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .sd-avatar-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #0f172a;
+        display: block;
+    }
+
+    .sd-hero-info {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        min-width: 220px;
+    }
+
+    .sd-welcome {
+        color: #93c5fd;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+
+    .sd-name {
+        font-size: 1.9rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+        line-height: 1.1;
+    }
+
+    .sd-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .sd-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.14);
+        color: #e2e8f0;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 20px;
+    }
+
+    .sd-id-pill {
+        position: relative;
+        z-index: 1;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.16);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 8px 16px;
+        border-radius: 10px;
+        align-self: flex-start;
+    }
+
+    /* ===== Stat Tiles ===== */
+    .sd-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px;
+        margin-top: 22px;
+    }
+
+    .sd-stat-card {
+        background: var(--sd-card);
+        border: 1px solid var(--sd-border);
+        border-radius: 16px;
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .sd-stat-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .sd-icon-blue {
+        background: #eff6ff;
+        color: #2563eb;
+    }
+
+    .sd-icon-green {
+        background: #ecfdf5;
+        color: #059669;
+    }
+
+    .sd-icon-purple {
+        background: #f5f3ff;
+        color: #7c3aed;
+    }
+
+    .sd-icon-amber {
+        background: #fffbeb;
+        color: #d97706;
+    }
+
+    .sd-stat-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--sd-muted);
+        font-weight: 700;
+        margin-bottom: 2px;
+    }
+
+    .sd-stat-value {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--sd-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* ===== Performance Card ===== */
+    .sd-performance {
+        background: var(--sd-card);
+        border: 1px solid var(--sd-border);
+        border-radius: 18px;
+        padding: 26px 28px;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        flex-wrap: wrap;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .sd-ring-wrap {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+    }
+
+    .sd-ring-svg {
+        transform: rotate(-90deg);
+    }
+
+    .sd-ring-bg {
+        fill: none;
+        stroke: #eef1f7;
+        stroke-width: 10;
+    }
+
+    .sd-ring-fg {
+        fill: none;
+        stroke: var(--sd-primary);
+        stroke-width: 10;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 1s ease;
+    }
+
+    .sd-ring-center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .sd-ring-center .val {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--sd-text);
+        }
+
+        .sd-ring-center .lbl {
+            font-size: 0.6rem;
+            color: var(--sd-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+    .sd-perf-text h5 {
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .sd-perf-text p {
+        color: var(--sd-muted);
+        font-size: 0.88rem;
+        margin-bottom: 0;
+    }
+
+    /* ===== Info Grid ===== */
+    .sd-info-title {
+        font-weight: 700;
+        font-size: 1.05rem;
+        margin: 28px 0 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .sd-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-bottom: 40px;
+    }
+
+    .sd-info-card {
+        background: var(--sd-card);
+        border: 1px solid var(--sd-border);
+        border-radius: 14px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .sd-info-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: #f1f5f9;
+        color: var(--sd-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 0.95rem;
+    }
+
+    .sd-info-label {
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        color: var(--sd-muted);
+        font-weight: 700;
+        letter-spacing: 0.4px;
+    }
+
+    .sd-info-value {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--sd-text);
+        word-break: break-word;
+    }
+
+    @@media (max-width: 575px) {
+        .sd-hero {
+            padding: 28px 22px;
+        }
+
+        .sd-name {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+@{
+    var overallRate = Model.OverallRate;
+    var circumference = 2 * Math.PI * 50;
+    var offset = circumference - (circumference * overallRate / 100);
+    var feesOk = (Model.feesstatus ?? "").ToLower() == "paid";
+}
+
+<div class="container py-5">
+    <div class="sd-wrap">
+
+        <!-- Hero -->
+        <div class="sd-hero">
+            <a asp-controller="Home" asp-action="Studentd" asp-route-id="@Model.Id" class="btn btn-primary">
+                <i class="fa-solid fa-pen-to-square"></i> Edit
+            </a>
+            <div class="sd-avatar-ring">
+                <img class="sd-avatar-img"
+                     src="@(string.IsNullOrEmpty(Model.profile) ? "https://ui-avatars.com/api/?name=" + Model.fullName + "&background=2563eb&color=fff" : Model.profile)"
+                     alt="@Model.fullName"
+                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=@Model.fullName&background=2563eb&color=fff';" />
+            </div>
+
+            <div class="sd-hero-info">
+                <div class="sd-welcome">Welcome back</div>
+                <div class="sd-name">@Model.fullName</div>
+                <div class="sd-tags">
+                    <span class="sd-tag"><i class="fa-solid fa-layer-group"></i> Grade @Model.Class</span>
+                    <span class="sd-tag">
+                        @if (Model.gender?.ToLower() == "male")
+                        {
+                            <i class="fa-solid fa-mars"></i> @: Male
+                        }
+                        else
+                        {
+                            <i class="fa-solid fa-venus"></i> @: Female
+                        }
+                    </span>
+                    <span class="sd-tag"><i class="fa-solid fa-cake-candles"></i> @Model.Age yrs</span>
+                </div>
+            </div>
+
+            <div class="sd-id-pill"><i class="fa-solid fa-id-card me-1"></i> ID #@Model.Id</div>
+        </div>
+
+        <!-- Stat tiles -->
+        <div class="sd-stats">
+            <div class="sd-stat-card">
+                <div class="sd-stat-icon sd-icon-blue"><i class="fa-solid fa-envelope"></i></div>
+                <div class="min-w-0">
+                    <div class="sd-stat-label">Email</div>
+                    <div class="sd-stat-value">@Model.email</div>
+                </div>
+            </div>
+
+            <div class="sd-stat-card">
+                <div class="sd-stat-icon sd-icon-purple"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="min-w-0">
+                    <div class="sd-stat-label">Class</div>
+                    <div class="sd-stat-value">@Model.Class</div>
+                </div>
+            </div>
+
+            <div class="sd-stat-card">
+                <div class="sd-stat-icon sd-icon-amber"><i class="fa-solid fa-cake-candles"></i></div>
+                <div class="min-w-0">
+                    <div class="sd-stat-label">Age</div>
+                    <div class="sd-stat-value">@Model.Age Years</div>
+                </div>
+            </div>
+
+            <div class="sd-stat-card">
+                <div class="sd-stat-icon @(feesOk ? "sd-icon-green" : "sd-icon-amber")">
+                    <i class="fa-solid @(feesOk ? "fa-circle-check" : "fa-circle-exclamation")"></i>
+                </div>
+                <div class="min-w-0">
+                    <div class="sd-stat-label">Fees Status</div>
+                    <div class="sd-stat-value">@(string.IsNullOrEmpty(Model.feesstatus) ? "Unpaid" : Model.feesstatus)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance -->
+        <div class="sd-performance">
+            <div class="sd-ring-wrap">
+                <svg class="sd-ring-svg" width="120" height="120" viewBox="0 0 120 120">
+                    <circle class="sd-ring-bg" cx="60" cy="60" r="50"></circle>
+                    <circle class="sd-ring-fg" cx="60" cy="60" r="50"
+                            stroke-dasharray="@circumference"
+                            stroke-dashoffset="@offset"></circle>
+                </svg>
+                <div class="sd-ring-center">
+                    <span class="val">@Model.OverallRate%</span>
+                    <span class="lbl">Overall</span>
+                </div>
+            </div>
+
+            <div class="sd-perf-text">
+                <h5><i class="fa-solid fa-chart-line text-primary me-1"></i> Academic Performance</h5>
+                <p>Overall rating based on latest evaluated records for @Model.fullName.</p>
+            </div>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="sd-info-title"><i class="fa-solid fa-address-card text-primary"></i> Personal Information</div>
+
+        <div class="sd-info-grid">
+            <div class="sd-info-card">
+                <div class="sd-info-icon"><i class="fa-solid fa-user"></i></div>
+                <div>
+                    <div class="sd-info-label">Full Name</div>
+                    <div class="sd-info-value">@Model.fullName</div>
+                </div>
+            </div>
+
+            <div class="sd-info-card">
+                <div class="sd-info-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <div>
+                    <div class="sd-info-label">Father Name</div>
+                    <div class="sd-info-value">@Model.fatherName</div>
+                </div>
+            </div>
+
+            <div class="sd-info-card">
+                <div class="sd-info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                    <div class="sd-info-label">Email Address</div>
+                    <div class="sd-info-value">@Model.email</div>
+                </div>
+            </div>
+
+            <div class="sd-info-card">
+                <div class="sd-info-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <div>
+                    <div class="sd-info-label">Class / Grade</div>
+                    <div class="sd-info-value">@Model.Class</div>
+                </div>
+            </div>
+
+            <div class="sd-info-card">
+                <div class="sd-info-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                <div>
+                    <div class="sd-info-label">Age</div>
+                    <div class="sd-info-value">@Model.Age Years</div>
+                </div>
+            </div>
+
+            <div class="sd-info-card">
+                <div class="sd-info-icon"><i class="fa-solid fa-venus-mars"></i></div>
+                <div>
+                    <div class="sd-info-label">Gender</div>
+                    <div class="sd-info-value">@Model.gender</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

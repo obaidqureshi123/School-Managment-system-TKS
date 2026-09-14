@@ -1,0 +1,499 @@
+﻿@model List<School_Managment_system.Models.Cards>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+    /* CSS Variables & Theme */
+    :root {
+        --tks-brand-deep: #16213E; /* Velvet Navy */
+        --tks-brand-edu: #0F3460; /* Admin Navy */
+        --tks-accent-gold: #E2B357; /* Old Gold Accent */
+        --tks-accent-hover: #C6953C;
+        --tks-bg-body: #EAEBF0;
+        --tks-bg-card: #FFFFFF;
+        --tks-paper-line: #E5E9EC;
+        --tks-text-muted: #5A6D80;
+    }
+
+    body {
+        background-color: var(--tks-bg-body) !important;
+    }
+
+    /* Core Section Typography */
+    .tks-section-title {
+        color: var(--tks-brand-deep);
+        font-weight: 850;
+        font-family: 'Poppins', sans-serif;
+        text-transform: uppercase;
+        position: relative;
+        letter-spacing: -1px;
+    }
+
+        .tks-section-title .text-gold {
+            color: var(--tks-accent-gold);
+        }
+
+    /* Modern Card Concept */
+    .tks-event-card {
+        border: none;
+        border-radius: 20px;
+        background: var(--tks-bg-card);
+        overflow: hidden;
+        position: relative;
+        padding: 0 !important;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: 0 10px 20px rgba(22, 33, 62, 0.05) !important;
+    }
+
+        .tks-event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px rgba(22, 33, 62, 0.15) !important;
+        }
+
+    /* Image Container (Aspect Ratio & Heights Fixed) */
+    .tks-img-container {
+        position: relative;
+        height: 380px;
+        width: 100%;
+        overflow: hidden;
+        background-color: var(--tks-brand-deep);
+    }
+
+    .tks-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .tks-event-card:hover .tks-card-img {
+        transform: scale(1.05);
+    }
+
+    /* Ribbon Overlay (Top-Right) */
+    .tks-image-ribbon {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        background: var(--tks-brand-deep);
+        color: var(--tks-accent-gold);
+        padding: 12px 14px 18px 14px;
+        font-weight: 800;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+        z-index: 3;
+    }
+
+    /* Book Spine Effect */
+    .tks-book-spine {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 8px;
+        background: linear-gradient(90deg, rgba(226, 179, 87, 0.9) 0%, rgba(22, 33, 62, 0.6) 100%);
+        z-index: 3;
+    }
+
+    /* Image Gradient Bottom Overlay */
+    .tks-img-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        z-index: 2;
+    }
+
+    /* Professional Video Player Wrapper */
+    .tks-video-wrapper {
+        position: relative;
+        width: 100%;
+        background-color: #000000;
+        border-bottom: 2px solid var(--tks-paper-line);
+        overflow: hidden;
+    }
+
+    .tks-video-player {
+        width: 100%;
+        max-height: 280px;
+        display: block;
+        object-fit: contain;
+        outline: none;
+    }
+
+    /* Card Content Container */
+    .tks-card-content {
+        flex-grow: 1;
+        padding: 24px;
+        margin-top: -10px;
+        z-index: 4;
+        background-color: var(--tks-bg-card);
+        background-image: linear-gradient(to bottom, transparent 27px, var(--tks-paper-line) 1px);
+        background-size: 100% 28px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Date Pill Badge */
+    .tks-badge-date {
+        background-color: var(--tks-brand-deep);
+        color: var(--tks-accent-gold);
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 6px 16px;
+        border-radius: 50rem;
+        display: inline-flex;
+        align-items: center;
+        box-shadow: 0 5px 12px rgba(22, 33, 62, 0.15);
+        margin-bottom: 12px;
+    }
+
+    /* Title & Description */
+    .tks-card-title {
+        color: var(--tks-brand-deep);
+        font-weight: 800;
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+
+    .tks-card-desc {
+        color: var(--tks-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    /* Admin Footer */
+    .tks-admin-footer {
+        border-top: 1px dashed var(--tks-paper-line);
+        padding-top: 15px;
+        margin-top: auto;
+    }
+
+    .tks-admin-pill-btn {
+        background-color: #FFF2F0;
+        border: 2px solid #FF8A65;
+        color: #E64A19;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 6px 18px;
+        border-radius: 50rem;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+        .tks-admin-pill-btn:hover {
+            background-color: #FF8A65;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(230, 74, 25, 0.25);
+        }
+
+    /* Pulsing Animation */
+    .pulsing-border {
+        box-shadow: 0 0 0 0 rgba(230, 74, 25, 0.4);
+        animation: pulsing 1.6s infinite ease-out;
+    }
+
+    @@keyframes pulsing {
+        0% {
+            box-shadow: 0 0 0 0 rgba(230, 74, 25, 0.4);
+        }
+
+        70% {
+            box-shadow: 0 0 0 10px rgba(230, 74, 25, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(230, 74, 25, 0);
+        }
+    }
+
+    /* Visual Corner Bookmark */
+    .tks-corner-bookmark {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 25px 25px;
+        border-color: transparent transparent var(--tks-accent-gold) transparent;
+        border-radius: 0 0 10px 0;
+        z-index: 5;
+    }
+
+    /* Admin Form */
+    .tks-admin-form-card {
+        border-radius: 20px;
+        border: none;
+        overflow: hidden;
+        background: var(--tks-bg-card);
+    }
+
+    .tks-admin-header {
+        background-color: var(--tks-brand-edu);
+        color: #ffffff;
+        padding: 25px;
+        position: relative;
+    }
+
+        .tks-admin-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--tks-accent-gold);
+        }
+
+    .form-custom-control {
+        border: 2px solid #E5E9EC;
+        border-radius: 12px;
+        padding: 12px 18px;
+        transition: all 0.3s ease;
+    }
+
+        .form-custom-control:focus {
+            border-color: var(--tks-accent-gold);
+            box-shadow: 0 0 0 4px rgba(226, 179, 87, 0.15);
+        }
+
+    .btn-tks-edu {
+        background-color: var(--tks-accent-gold);
+        color: #1A1A1A;
+        font-weight: 800;
+        border: none;
+        box-shadow: 0 8px 20px rgba(226, 179, 87, 0.3);
+        transition: all 0.3s ease;
+    }
+
+        .btn-tks-edu:hover {
+            background-color: var(--tks-accent-hover);
+            color: #1A1A1A;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(226, 179, 87, 0.4);
+        }
+
+    /* Media query scaling adjustments */
+    @@media (max-width: 767.98px) {
+        .tks-img-container {
+            height: 280px;
+        }
+    }
+</style>
+
+<div class="container my-5">
+
+    <!-- Section Heading -->
+    <div class="text-center mb-5 pb-3">
+        <h2 class="tks-section-title text-uppercase display-6 mb-3">
+            <span class="text-gold">The Knowledge</span> School Events
+        </h2>
+        <div class="mx-auto" style="width: 80px; height: 5px; background: var(--tks-accent-gold); border-radius: 10px;"></div>
+        <p class="text-muted mt-3 fs-5">All the latest news, updates, and upcoming school activities</p>
+    </div>
+
+    <!-- Events Cards Grid -->
+    <div class="row g-4">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card tks-event-card shadow-sm">
+
+                        <!-- Image Frame Container -->
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <div class="tks-img-container">
+                                <div class="tks-book-spine"></div>
+                                <div class="tks-image-ribbon">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </div>
+                                <img src="@item.Image" class="tks-card-img" alt="School Event Image" onerror="this.onerror=null; this.src='/images/placeholder.jpg';" />
+                                <div class="tks-img-overlay"></div>
+                            </div>
+                        }
+
+                        <!-- Video Section (Rendered only if video exists) -->
+                        @if (!string.IsNullOrEmpty(item.Video))
+                        {
+                            <div class="tks-video-wrapper">
+                                <video controls preload="metadata" class="tks-video-player">
+                                    <source src="@item.Video" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        }
+
+                        <!-- Card Body Content -->
+                        <div class="tks-card-content">
+
+                            <!-- Event Date Badge -->
+                            <div class="mb-2">
+                                <span class="tks-badge-date">
+                                    <i class="fa-regular fa-calendar-alt me-2"></i> @item.date
+                                </span>
+                            </div>
+
+                            <!-- Title -->
+                            <h5 class="tks-card-title text-wrap">
+                                <i class="fa-solid fa-graduation-cap me-2 text-warning"></i> @item.Title
+                            </h5>
+
+                            <!-- Description -->
+                            <p class="tks-card-desc flex-grow-1">
+                                @item.Description
+                            </p>
+
+                            <!-- Admin Action Buttons -->
+                            @if (Context.Session.GetString("Admin") == "true")
+                            {
+                                <div class="tks-admin-footer d-flex align-items-center justify-content-between">
+                                    <small class="text-muted fw-bold text-uppercase">Admin Portal</small>
+                                    <a asp-controller="Home"
+                                       asp-action="DeleteCard"
+                                       asp-route-id="@item.Id"
+                                       class="tks-admin-pill-btn pulsing-border">
+                                        <i class="fa-solid fa-trash-can me-1"></i> Delete
+                                    </a>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Visual Corner Bookmark -->
+                        <div class="tks-corner-bookmark"></div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center py-5">
+                <div class="alert alert-info rounded-pill d-inline-block px-5">
+                    <i class="fa-solid fa-circle-info me-2"></i> No events published yet.
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Add Event Form (For Admin) -->
+    @if (Context.Session.GetString("Admin") == "true")
+    {
+
+        <div class="row justify-content-center mt-5 pt-4">
+            <div class="col-12 col-lg-8">
+                <form method="post" asp-action="Card" asp-controller="Home" enctype="multipart/form-data">
+                    <div class="card tks-admin-form-card shadow-lg">
+
+                        
+
+                        <!-- Form Header -->
+                        <div class="tks-admin-header text-center">
+                            <h3 class="fw-bold mb-1 fs-4">
+                                <i class="fa-solid fa-book-medical me-2" style="color: var(--tks-accent-gold);"></i>
+                                Publish New Event
+                            </h3>
+                            <p class="small mb-0 text-white-50">Create a new announcement for school activities</p>
+                        </div>
+
+                        <div class="p-4 p-md-5">
+                            <!-- TITLE -->
+                            <div class="mb-4">
+                                <label class="form-label d-block mb-2 fw-bold" style="color: var(--tks-brand-deep);">
+                                    <i class="fa-solid fa-heading me-2 text-warning"></i> Event Title
+                                </label>
+                                <input type="text"
+                                       name="Title"
+                                       class="form-control form-custom-control"
+                                       placeholder="e.g. Annual Sports Day 2026"
+                                       required />
+                            </div>
+
+                            <!-- IMAGE UPLOAD -->
+                            <div class="mb-4">
+                                <label class="form-label d-block mb-2 fw-bold" style="color: var(--tks-brand-deep);">
+                                    <i class="fa-solid fa-image me-2 text-warning"></i> Event Poster Banner Image
+                                </label>
+                                <input type="file"
+                                       name="Image"
+                                       class="form-control form-custom-control"
+                                       accept="image/*" />
+                                <small class="text-muted mt-1 d-block">Recommended poster size image.</small>
+                            </div>
+
+                            <!-- VIDEO UPLOAD SECTION -->
+                            <div class="mb-4">
+                                <label class="form-label d-block mb-2 fw-bold" style="color: var(--tks-brand-deep);">
+                                    <i class="fa-solid fa-video me-2 text-warning"></i> Event Video Clip (Optional)
+                                </label>
+
+                                <input type="file"
+                                       id="videoInput"
+                                       name="Video"
+                                       accept="video/*"
+                                       class="form-control form-custom-control mb-3" />
+
+                                @if (ViewBag.ErrorMessage != null)
+                                {
+                                    <div class="alert alert-danger">
+                                        @ViewBag.ErrorMessage
+                                    </div>
+                                }
+
+                                <!-- Video Preview Player -->
+                                <div class="text-center">
+                                    <video id="videoPreview" controls class="w-100 rounded-3 shadow-sm" style="display:none; max-height: 300px; background: #000;"></video>
+                                </div>
+                            </div>
+
+                            <!-- DATE -->
+                            <div class="mb-4">
+                                <label class="form-label d-block mb-2 fw-bold" style="color: var(--tks-brand-deep);">
+                                    <i class="fa-solid fa-calendar-days me-2 text-warning"></i> Event Date
+                                </label>
+                                <input type="date"
+                                       name="date"
+                                       class="form-control form-custom-control" />
+                            </div>
+
+                            <!-- DESCRIPTION -->
+                            <div class="mb-4">
+                                <label class="form-label d-block mb-2 fw-bold" style="color: var(--tks-brand-deep);">
+                                    <i class="fa-solid fa-align-left me-2 text-warning"></i> Event Description
+                                </label>
+                                <textarea name="Description"
+                                          class="form-control form-custom-control"
+                                          rows="5"
+                                          placeholder="Detailed information about the event..."></textarea>
+                            </div>
+
+                            <!-- SUBMIT BUTTON -->
+                            <div class="d-grid pt-3">
+                                <button type="submit" class="btn btn-tks-edu btn-lg rounded-pill py-3 fs-6">
+                                    <i class="fa-solid fa-paper-plane me-2"></i> Add Event to Portal
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+</div>
+

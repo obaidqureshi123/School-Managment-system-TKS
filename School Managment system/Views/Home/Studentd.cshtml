@@ -1,0 +1,77 @@
+﻿@model School_Managment_system.Models.Student
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <!-- Header -->
+                <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+                    <h4 class="mb-0 fw-bold"><i class="bi bi-person-gear me-2"></i>Edit Student Profile</h4>
+                </div>
+
+                <!-- Form Body -->
+                <div class="card-body p-4">
+                    <form asp-action="Studentd" asp-controller="Home" method="post" enctype="multipart/form-data">
+
+                        <!-- Hidden ID -->
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Current Profile Preview & Image Upload -->
+                        <div class="mb-4 text-center">
+                            @if (!string.IsNullOrEmpty(Model?.profile))
+                            {
+                                <img src="@Model.profile" alt="Profile Photo" class="rounded-circle img-thumbnail mb-3 shadow-sm" style="width: 120px; height: 120px; object-fit: cover;" />
+                            }
+                            <div class="text-start">
+                                <label class="form-label fw-semibold text-secondary">Update Profile Photo</label>
+                                <input type="file" name="profile" class="form-control" accept="image/*" />
+                            </div>
+                        </div>
+
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Full Name</label>
+                            <input asp-for="fullName" class="form-control form-control-lg fs-6" placeholder="Enter full name" />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Email Address</label>
+                            <input asp-for="email" class="form-control form-control-lg fs-6" type="email" placeholder="example@domain.com" />
+                        </div>
+
+                        <!-- Row for Age & Class -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold text-secondary">Age</label>
+                                <input asp-for="Age" class="form-control" type="number" placeholder="Age" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold text-secondary">Class</label>
+                                <input asp-for="Class" class="form-control" placeholder="e.g. 10th" />
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary">Phone Number</label>
+                            <input asp-for="phone" class="form-control" type="tel" placeholder="03XXXXXXXXX" />
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <a asp-action="Dashboard" class="btn btn-light me-md-2 px-4 border fw-semibold">Cancel</a>
+                            <button type="submit" class="btn btn-primary px-4 fw-semibold shadow-sm">
+                                Save Changes
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

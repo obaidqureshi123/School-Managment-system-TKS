@@ -1,0 +1,139 @@
+﻿@model School_Managment_system.Models.Student
+
+<style>
+    :root {
+        --tks-primary: #2B4053; /* Main Slate Blue Background */
+        --tks-accent: #D99E30; /* Gold/Yellow Color */
+        --tks-accent-hover: #b88322;
+        --tks-text-muted: #6c757d;
+    }
+
+    body {
+        background-color: #f4f7f9;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-wrapper {
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .login-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: 2px solid #eef2f5;
+        overflow: hidden;
+        max-width: 450px;
+        width: 100%;
+    }
+
+    .login-header {
+        background-color: var(--tks-primary);
+        color: #ffffff;
+        padding: 30px 20px;
+        text-align: center;
+        border-bottom: 4px solid var(--tks-accent);
+    }
+
+        .login-header h3 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .login-header p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin: 0;
+        }
+
+    .login-body {
+        padding: 30px;
+    }
+
+    .form-control:focus {
+        border-color: var(--tks-accent);
+        box-shadow: 0 0 0 0.25rem rgba(217, 158, 48, 0.25);
+    }
+
+    .btn-tks {
+        background-color: var(--tks-accent);
+        color: #ffffff;
+        font-weight: 600;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-tks:hover {
+            background-color: var(--tks-accent-hover);
+            color: #ffffff;
+        }
+
+    .badge-welcome {
+        background-color: var(--tks-accent);
+        color: #fff;
+        font-size: 0.75rem;
+        padding: 5px 12px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="login-wrapper">
+    <div class="login-card">
+        <!-- Header Section -->
+        <div class="login-header">
+            <span class="badge-welcome">WELCOME TO TKS</span>
+            <h3>Login Portal</h3>
+            <p>The Knowledge Islamic School</p>
+        </div>
+
+        <!-- Form Section -->
+        <div class="login-body">
+            <form asp-action="Login" asp-controller="Home" method="post">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Email / Username Input -->
+                <div class="mb-3">
+                    <label asp-for="email" class="form-label font-weight-bold" style="color: var(--tks-primary);">Email Address</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                        <input asp-for="email" class="form-control" placeholder="Enter your email" required />
+                    </div>
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-3">
+                    <label asp-for="password" class="form-label font-weight-bold" style="color: var(--tks-primary);">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+                        <input asp-for="password" type="password" class="form-control" placeholder="Enter your password" required />
+                    </div>
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+
+                
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-tks w-100">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

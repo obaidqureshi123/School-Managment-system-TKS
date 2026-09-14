@@ -1,0 +1,579 @@
+﻿<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f1f7f3;
+        color: #26352d;
+    }
+
+    /* =========================
+       MAIN PAGE
+    ========================= */
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 45px 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    /* =========================
+       FORM CARD
+    ========================= */
+
+    .form-card {
+        width: 900px;
+        background: #ffffff;
+        padding: 45px 50px;
+        border-radius: 16px;
+        border: 1px solid #dfeae3;
+        box-shadow: 0 12px 35px rgba(24, 74, 49, 0.10);
+    }
+
+    /* =========================
+       SCHOOL HEADER
+    ========================= */
+
+    .school-header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .school-logo {
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #198754;
+        color: #ffffff;
+        border-radius: 14px;
+        font-size: 36px;
+        box-shadow: 0 7px 18px rgba(25, 135, 84, 0.22);
+    }
+
+    .school-header h1 {
+        font-size: 31px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: #173b29;
+        margin-bottom: 4px;
+    }
+
+    .school-header h2 {
+        font-size: 20px;
+        line-height: 1.3;
+        font-weight: 600;
+        color: #198754;
+        margin-bottom: 4px;
+    }
+
+    .school-header p {
+        font-size: 14px;
+        color: #7a8580;
+    }
+
+    /* =========================
+       DIVIDER
+    ========================= */
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        background: #dce8e1;
+        margin: 28px 0 30px;
+    }
+
+    /* =========================
+       MAIN HEADING
+    ========================= */
+
+    .form-card > h3 {
+        font-size: 25px;
+        font-weight: 700;
+        color: #173b29;
+        margin-bottom: 7px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #7a8580;
+        margin-bottom: 32px;
+    }
+
+    /* =========================
+       SECTION TITLE
+    ========================= */
+
+    .section-title {
+        height: 43px;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        margin: 32px 0 20px;
+        font-size: 17px;
+        font-weight: 700;
+        color: #173b29;
+        border-bottom: 2px solid #e6eee9;
+    }
+
+        .section-title span {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #198754;
+            color: #ffffff;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(25, 135, 84, 0.18);
+        }
+
+    /* =========================
+       INPUT ROW
+    ========================= */
+
+    .input-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    /* =========================
+       INPUT GROUP
+    ========================= */
+
+    .input-group {
+        margin-bottom: 19px;
+    }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #34463b;
+            margin-bottom: 7px;
+        }
+
+        /* =========================
+       INPUT / SELECT / TEXTAREA
+    ========================= */
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d4e0d9;
+            border-radius: 8px;
+            background: #fbfdfc;
+            color: #26352d;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+            /* Placeholder */
+
+            .input-group input::placeholder,
+            .input-group textarea::placeholder {
+                color: #a1aaa5;
+            }
+
+            /* Focus */
+
+            .input-group input:focus,
+            .input-group select:focus,
+            .input-group textarea:focus {
+                border-color: #198754;
+                background: #ffffff;
+                box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.09);
+            }
+
+        /* Select */
+
+        .input-group select {
+            height: 44px;
+            cursor: pointer;
+        }
+
+        /* Textarea */
+
+        .input-group textarea {
+            min-height: 95px;
+            resize: vertical;
+        }
+
+    /* =========================
+       TERMS
+    ========================= */
+
+    .terms {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        margin: 22px 0;
+        color: #68756e;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+        .terms input {
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+            accent-color: #198754;
+            cursor: pointer;
+        }
+
+        .terms label {
+            cursor: pointer;
+        }
+
+        .terms a {
+            color: #198754;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+            .terms a:hover {
+                text-decoration: underline;
+            }
+
+    /* =========================
+       SUBMIT BUTTON
+    ========================= */
+
+    button[type="submit"] {
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 20px;
+        background: #198754;
+        color: #ffffff;
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+        button[type="submit"] span {
+            margin-left: 7px;
+            font-size: 19px;
+        }
+
+        button[type="submit"]:hover {
+            background: #146c43;
+            box-shadow: 0 7px 18px rgba(25, 135, 84, 0.20);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(1px);
+        }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+        text-align: center;
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid #e3ebe6;
+    }
+
+        .footer p {
+            color: #68756e;
+            font-size: 13px;
+            margin-bottom: 9px;
+        }
+
+        .footer a {
+            color: #198754;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+            .footer a:hover {
+                text-decoration: underline;
+            }
+
+        .footer small {
+            color: #9aa49e;
+            font-size: 11px;
+        }
+</style>
+
+    <div class="page">
+
+        <div class="form-card">
+
+            <!-- School Header -->
+            <div class="school-header">
+
+                <div class="school-logo">
+                    📚
+                </div>
+
+                <div>
+                    <h1>The Knowledge</h1>
+                    <h2>Islamic Montessori</h2>
+                    <p>Student Registration Form</p>
+                </div>
+
+            </div>
+
+            <div class="divider"></div>
+
+            <h3>Create Student Account</h3>
+
+            <p class="subtitle">
+                Please provide your details to register in our school management system.
+            </p>
+
+            <form asp-controller="Home" asp-action="Form" method="post" enctype="multipart/form-data">
+
+                <!-- Student Information -->
+                <div class="section-title">
+                    <span>01</span>
+                    Student Information
+                </div>
+
+                <div class="input-row">
+
+                    <div class="input-group">
+                        <label for="fullName">Full Name</label>
+                        <input name="fullName"
+                               type="text"
+                               placeholder="Enter student's full name"
+                               required>
+                    </div>
+                <div class="input-group">
+                    <label for="Image">Upload Profile photo</label>
+                    <input name="profile"
+                           type="file"
+                           accept="image/*"
+                           id="fullName"
+                           placeholder="Enter student's full name"
+                           required>
+                </div>
+                    <div class="input-group">
+                        <label for="fatherName">Father's Name</label>
+                        <input name="fatherName"
+                               type="text"
+                               id="fatherName"
+                               placeholder="Enter father's name"
+                               required>
+                    </div>
+
+                </div>
+
+                <div class="input-row">
+
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input name="email"
+                               type="email"
+                               id="email"
+                               placeholder="Enter email address"
+                               required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="phone">Phone Number</label>
+                        <input name="phone"
+                               type="tel"
+                               id="phone"
+                               placeholder="03XX-XXXXXXX"
+                               required>
+                    </div>
+
+                </div>
+
+                <div class="input-row">
+
+                    <div class="input-group">
+                        <label for="dob">Age</label>
+                        <input name="Age"
+                               type="number"
+                               id="dob"
+                               required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="gender">Gender</label>
+                        <select name="gender" id="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="male">Boy</option>
+                            <option value="female">Girl</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <!-- School Information -->
+                <div class="section-title">
+                    <span>02</span>
+                    School Information
+                </div>
+
+                <div class="input-row">
+
+                    <div class="input-group">
+                        <label for="class">Class / Level</label>
+
+                        <select name="Class" id="class" required>
+                            <option value="">Select class</option>
+                            <option value="playgroup">Play Group</option>
+                            <option value="nursery">Nursery</option>
+                            <option value="prep">Prep</option>
+                            <option value="grade1">Grade 1</option>
+                            <option value="grade2">Grade 2</option>
+                            <option value="grade3">Grade 3</option>
+                            <option value="grade4">Grade 4</option>
+                            <option value="grade5">Grade 5</option>
+                        <option value="grade5">Grade 6</option>
+                        <option value="grade5">Grade 7</option>                         
+                        <option value="grade5">Grade 8</option>
+                            <option value="grade5">Grade 9</option>
+                             <option value="grade5">Grade 10</option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="admission">
+                            Admission Type
+                        </label>
+
+                        <select name="admissionType" id="admission" required>
+                            <option value="">Select admission type</option>
+                            <option value="new">DAY CARE </option>
+                            <option value="existing">JUST SCHOOL</option>
+                        <option value="existing">Hifz with School</option>
+                        <option value="existing">Tution with School</option>
+
+                      
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="address">
+                        Comments
+                    </label>
+
+                    <textarea name="comments"
+                              id="address"
+                              rows="3"
+                              placeholder="Any Messgae for us"
+                              ></textarea>
+
+                </div>
+
+
+                <!-- Account Information -->
+                <div class="section-title">
+                    <span>03</span>
+                    Account Information
+                </div>
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input name="password"
+                           type="password"
+                           id="password"
+                           placeholder="Create a password"
+                           required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input name="confirmPassword"
+                           type="password"
+                           id="confirmPassword"
+                           placeholder="Confirm your password"
+                           required>
+
+                </div>
+
+                
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-danger">@ViewBag.Message</div>
+
+            }
+                
+
+                <!-- Terms -->
+                <div class="terms">
+
+                    <input type="checkbox"
+                           id="terms"
+                           required>
+
+                    <label for="terms">
+                    <a href="#">Terms & Conditions</a>
+                    and
+                    <a href="#">Privacy Policy</a>.
+
+                        I agree With the rules
+                    </label>
+
+                </div>
+
+
+                <button type="submit">
+                    Submit Registration
+                    <span>→</span>
+                </button>
+
+         </form> 
+
+           
+            <div class="footer">
+
+                <p>
+                    Already registered?
+                    <a href="#">Login to your account</a>
+                </p>
+
+                <small>
+                    © 2026 The Knowledge Islamic Montessori
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
